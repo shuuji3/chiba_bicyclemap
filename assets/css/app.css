@@ -1,10 +1,20 @@
+html {
+  font-size: 16px;
+}
 html, body, #container {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 body {
-  padding-top: 50px;
+  font-size: 1rem;
+  padding-top: 4rem;
+}
+.navbar {
+  padding-block: 0.5rem;
+}
+.leaflet-container {
+  font-size: 1rem;
 }
 input[type="radio"], input[type="checkbox"] {
   margin: 0;
@@ -81,7 +91,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .navbar .navbar-brand {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 1.5rem;
   color: #FFFFFF;
 }
 .navbar-collapse.in {
@@ -96,6 +106,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 .navbar-header a.navbar-icon {
   margin-left: 25px;
+}
+.panel-heading {
+  padding-block: 1rem;
 }
 .typeahead {
   background-color: #FFFFFF;
@@ -112,7 +125,7 @@ input[type="radio"], input[type="checkbox"] {
   overflow: auto;
 }
 .tt-suggestion {
-  font-size: 14px;
+  font-size: 0.8rem;
   line-height: 20px;
   padding: 3px 10px;
 }
@@ -144,7 +157,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 @media (max-width: 992px) {
   .navbar .navbar-brand {
-    font-size: 18px;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 767px){
