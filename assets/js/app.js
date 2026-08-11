@@ -251,17 +251,6 @@ var bicycleShop = L.geoJson(null, {
           //highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      /*
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      theaterSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.ADDRESS1,
-        source: "Theaters",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-      */
     }
   }
 });
@@ -294,17 +283,8 @@ var parkings = L.geoJson(null, {
           //highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      /*
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      museumSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.ADRESS1,
-        source: "Museums",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-      */
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="assets/img/bicycle_parking.svg"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      featureLayers[L.stamp(layer)] = layer;
     }
   }
 });
@@ -312,49 +292,6 @@ $.getJSON("data/parking.geojson", function (data) {
   parkings.addData(data);
   parkings.addTo(parkingLayer);
   //map.addLayer(parkingLayer);
-});
-
-var busStopLayer = L.geoJson(null);
-var busStop = L.geoJson(null, {
-  pointToLayer: function (feature, latlng) {
-    return L.marker(latlng, {
-      icon: L.icon({
-        iconUrl: "assets/img/bus-18.png",
-        iconSize: new L.Point(18, 18),
-        opacity: 1
-      }),
-      title: feature.properties.name
-    });
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.P11_001 + "</td></tr>" + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.P11_001);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-          //highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-        }
-      });
-      /*
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      theaterSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.ADDRESS1,
-        source: "Theaters",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-      */
-    }
-  }
-});
-$.getJSON("data/bus_stop.geojson", function (data) {
-    busStop.addData(data);
-    busStop.addTo(busStopLayer);
-    //map.addLayer(busStopLayer);
 });
 
 
@@ -419,8 +356,7 @@ var baseLayers = {
 var groupedOverlays = {
   "Points of Interest": {
     "駐輪場": parkingLayer,
-    "自転車屋": bicycleShopLayer,
-    "バス停": busStopLayer
+    "自転車屋": bicycleShopLayer
     },
   "走りやすさ": {
     "自転車用道路": bicycle_lane,
@@ -446,8 +382,23 @@ $(document).one("ajaxStop", function () {
   /* Fit map to boroughs bounds */
   map.fitBounds(bicycleShopLayer.getBounds());
 
+  featureList = new List('features', {
+    valueNames: ['feature-name']
+  });
+
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
+});
+
+var featureList;
+var featureLayers = {};
+
+/* Sidebar feature row click -> center map only, no modal */
+$("#feature-list").on("click", ".feature-row", function() {
+  var layer = featureLayers[this.id];
+  if (layer) {
+    map.flyTo(layer.getLatLng(), 17);
+  }
 });
 
 // Leaflet patch to make layer control scrollable on touch browsers
