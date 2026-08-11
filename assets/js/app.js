@@ -59,6 +59,11 @@ function clearHighlight() {
 }
 
 /* Basemap Layers */
+var maptilerBasicJA = L.tileLayer("https://tile.openstreetmap.jp/styles/maptiler-basic-ja/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "OpenStreetMap contributors, OpenStreetMap Foundation Japan (CC-BY)"
+}
+);
 var gsiStd = L.tileLayer("http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>",
@@ -66,6 +71,12 @@ var gsiStd = L.tileLayer("http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.pn
 }
 );
 var gsiPale = L.tileLayer("http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>",
+    opacity: 0.8
+}
+);
+var gsiPhoto = L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg", {
     maxZoom: 18,
     attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>",
     opacity: 0.8
@@ -399,8 +410,10 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
+  "Maptiler-Basic-JA": maptilerBasicJA,
   "地理院タイル標準地図": gsiStd,
-  "地理院タイル淡色地図": gsiPale
+  "地理院タイル淡色地図": gsiPale,
+  "地理院タイル空中写真(シームレス)": gsiPhoto
 };
 
 var groupedOverlays = {
