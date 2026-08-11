@@ -155,7 +155,7 @@ $.getJSON("data/12_chiba_city_bicyclemap_greenline.geojson", function (data) {
 var bicyclemap_pinkline = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#c00000",
+      color: "#990099",
       fill: false,
       weight: 3,
       opacity: 1,
