@@ -222,7 +222,7 @@ var bicycleShop = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "http://umap.openstreetmap.fr/uploads/pictogram/bicycle-24.png",
+        iconUrl: "assets/img/bicycle_shops.png",
         iconSize: new L.Point(30, 30),
         opacity: 1
       }),
@@ -352,7 +352,7 @@ map = L.map("map", {
   center: [35.600252, 140.098042],
   layers: [gsiStd, bicycle_lane, bicyclemap_blueline, bicyclemap_greenline, bicyclemap_pinkline, bicyclemap_orengeline],
   zoomControl: false,
-  attributionControl: false
+  attributionControl: true
 });
 
 var zoomControl = L.control.zoom({
