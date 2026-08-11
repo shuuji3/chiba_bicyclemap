@@ -86,7 +86,7 @@ var gsiPhoto = L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{
 var bicycle_lane = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#00ffff",
+      color: "#1971ff",
       fill: false,
       weight: 3,
       opacity: 1,
@@ -109,7 +109,7 @@ $.getJSON("data/01_chiba_city_bicycle_lane.geojson", function (data) {
 var bicyclemap_blueline = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#0000ff",
+      color: "#00b06b",
       fill: false,
       weight: 3,
       opacity: 1,
@@ -132,7 +132,7 @@ $.getJSON("data/11_chiba_city_bicyclemap_blueline.geojson", function (data) {
 var bicyclemap_greenline = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#00ff00",
+      color: "#f6aa00",
       fill: false,
       weight: 3,
       opacity: 1,
@@ -155,7 +155,7 @@ $.getJSON("data/12_chiba_city_bicyclemap_greenline.geojson", function (data) {
 var bicyclemap_pinkline = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#ff00ff",
+      color: "#c00000",
       fill: false,
       weight: 3,
       opacity: 1,
@@ -179,7 +179,7 @@ $.getJSON("data/14_chiba_city_bicyclemap_pinkline.geojson", function (data) {
 var bicyclemap_orengeline = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#ff9900",
+      color: "#ff4b00",
       fill: false,
       weight: 3,
       opacity: 1,
