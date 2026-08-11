@@ -361,7 +361,7 @@ $.getJSON("data/bus_stop.geojson", function (data) {
 map = L.map("map", {
   zoom: 10,
   center: [35.600252, 140.098042],
-  layers: [gsiStd, bicycle_lane, bicyclemap_blueline, bicyclemap_greenline, bicyclemap_pinkline, bicyclemap_orengeline, parkingLayer, bicycleShopLayer],
+  layers: [maptilerBasicJA, bicycle_lane, bicyclemap_blueline, bicyclemap_greenline, bicyclemap_pinkline, bicyclemap_orengeline, parkingLayer, bicycleShopLayer],
   zoomControl: false,
   attributionControl: true
 });
@@ -411,9 +411,9 @@ if (document.body.clientWidth <= 767) {
 
 var baseLayers = {
   "Maptiler-Basic-JA": maptilerBasicJA,
+  "地理院タイル空中写真(シームレス)": gsiPhoto,
   "地理院タイル標準地図": gsiStd,
   "地理院タイル淡色地図": gsiPale,
-  "地理院タイル空中写真(シームレス)": gsiPhoto
 };
 
 var groupedOverlays = {
@@ -444,7 +444,7 @@ $(document).one("ajaxStop", function () {
   $("#loading").hide();
   sizeLayerControl();
   /* Fit map to boroughs bounds */
-  map.fitBounds(bicycle_lane.getBounds());
+  map.fitBounds(bicycleShopLayer.getBounds());
 
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
