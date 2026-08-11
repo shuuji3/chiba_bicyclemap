@@ -361,7 +361,7 @@ $.getJSON("data/bus_stop.geojson", function (data) {
 map = L.map("map", {
   zoom: 10,
   center: [35.600252, 140.098042],
-  layers: [gsiStd, bicycle_lane, bicyclemap_blueline, bicyclemap_greenline, bicyclemap_pinkline, bicyclemap_orengeline],
+  layers: [gsiStd, bicycle_lane, bicyclemap_blueline, bicyclemap_greenline, bicyclemap_pinkline, bicyclemap_orengeline, parkingLayer, bicycleShopLayer],
   zoomControl: false,
   attributionControl: true
 });
@@ -418,7 +418,7 @@ var baseLayers = {
 
 var groupedOverlays = {
   "Points of Interest": {
-    "駐車場": parkingLayer,
+    "駐輪場": parkingLayer,
     "自転車屋": bicycleShopLayer,
     "バス停": busStopLayer
     },
