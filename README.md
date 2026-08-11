@@ -1,4 +1,4 @@
-# ちば自転車走りやすさマップ (fork)
+# 千葉市 自転車走りやすさマップ (fork)
 
 千葉市の「[自転車走りやすさマップ](https://www.city.chiba.jp/kensetsu/doro/bicycle/soukoukankyouseibi.html)」をオンライン地図にしたプロジェクト。
 
